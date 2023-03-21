@@ -3,6 +3,10 @@ from django.urls import path
 from .views import GymLista, HomeView, FuncionalLista, FutbolLista, BoxeoLista, BasquetLista, OtroLista, LoginPagina, RegistroPagina, UsuarioEdicion, CambioPassword
 from django.contrib.auth.views import LogoutView
 from . import views
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from LoginRegisterSystem.views import CustomLoginView
+from LoginRegisterSystem.forms import LoginForm
 
 urlpatterns = [
 path('', HomeView.as_view(), name='home'),
@@ -20,5 +24,4 @@ path('listaFutbol/', FutbolLista.as_view(), name='futbols'),
 path('listaBoxeo/', BoxeoLista.as_view(), name='boxeos'),
 path('listaBasquet/', BasquetLista.as_view(), name='basquets'),
 path('listaOtros/', OtroLista.as_view(), name='otros'),
-
 ]

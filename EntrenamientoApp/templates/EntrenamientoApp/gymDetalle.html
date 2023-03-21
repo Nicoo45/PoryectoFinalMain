@@ -1,0 +1,43 @@
+{% extends 'EntrenamientoApp/home.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{gym.titulo}}</h4></p>
+
+{% if gym.imagenEquipamiento %}
+    <p><img src="{{guitarra.imagenInstrumento.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{gym.marca}}</p>
+<p>Descripción: {{gym.descripcion}}</p>
+<p>Año: {{gym.year}}</p>
+<p>Precio(US$): {{gym.precio}}</p>
+<p>Estado: {{gym.estado}}</p>
+<p>Teléfono de Contacto: {{gym.telefonoContacto}}</p>
+<p>Email de Contacto: {{gym.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not gym.comentarios.all %}
+        No han comentado este instrumento
+    {% else %}
+        {% for comentario in gym.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' gym.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}

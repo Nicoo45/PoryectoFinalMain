@@ -64,6 +64,11 @@ class GymLista(LoginRequiredMixin, ListView):
     template_name = 'EntrenamientoApp/listaGym.html'
     #login_url = '/login/'
 
+class GymDetalle(DetailView):
+    model = Equipamiento
+    context_object_name = 'gym'
+    template_name = 'EntrenamientoApp/gymDetalle.html'
+
 # FUNCIONAL
 
 class FuncionalLista(ListView):

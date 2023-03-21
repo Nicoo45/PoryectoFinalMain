@@ -22,7 +22,7 @@
                 <div class="card-body">
                 <img src="{{bajo.imagenInstrumento.url}}" class="" width="100px">
                 {{BASQUET.titulo}}
-                <a href="{% url 'bajo' bajo.id %}"><i class="bi bi-eye"></i></a>
+                <a href="{% url 'basquet' basquet.id %}"><i class="bi bi-eye"></i></a>
                 {% if user.id == BASQUET.usuario.id %}
                 <a href="{% url 'basquet_editar' basquet.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'basquet_eliminar' basquet.id %}"><i class="bi bi-trash text-danger"></i></a>

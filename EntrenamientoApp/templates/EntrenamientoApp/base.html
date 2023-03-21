@@ -37,11 +37,11 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item" href="{% static 'EntrenamientoApp/portfolio-overview.html' %}">GYM</a></li>
-                                    <li><a class="dropdown-item" href="{% static 'EntrenamientoApp/portfolio-item.html' %}">FUNCIONAL</a></li>
-                                    <li><a class="dropdown-item" href="{% static 'EntrenamientoApp/portfolio-item.html' %}">FUTBOL</a></li>
-                                    <li><a class="dropdown-item" href="{% static 'EntrenamientoApp/portfolio-item.html' %}">BOXEO</a></li>
-                                    <li><a class="dropdown-item" href="{% static 'EntrenamientoApp/portfolio-item.html' %}">BASQUET</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'gyms' %}">GYM</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'funcionals' %}">FUNCIONAL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'futbols' %}">FUTBOL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'boxeos' %}">BOXEO</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'basquets' %}">BASQUET</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -70,25 +70,6 @@
             {% block content %} 
 
             {% endblock %}
-                    <!-- Call to action-->
-                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                            <div class="mb-4 mb-xl-0">
-                                <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
-                                <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
-                            </div>
-                            <div class="ms-xl-4">
-                                <div class="input-group mb-2">
-                                    <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                                    <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
-                                </div>
-                                <div class="small text-white-50">We care about privacy, and will never share your data.</div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-        </main>
         <!-- Footer-->
         <footer class="bg-dark py-4 mt-auto">
             <div class="container px-5">

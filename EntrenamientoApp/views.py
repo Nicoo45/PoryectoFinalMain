@@ -1,10 +1,10 @@
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 #from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView 
 #from django.contrib.auth.views import LoginView, PasswordChangeView
-#from django.contrib.auth.forms import PasswordChangeForm
+#from .forms import FormularioRegistroUsuario
 #from django.contrib.auth.mixins import LoginRequiredMixin
-#from django.contrib.auth.models import User
-#from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from .models import Equipamiento
@@ -19,6 +19,11 @@ class GymLista(ListView):
     queryset = Equipamiento.objects.filter(equipamiento__startswith='gym')
     template_name = 'EntrenamientoApp/listaGym.html'
     #login_url = '/login/'
+
+class GymDetalle(DetailView):
+    model = Equipamiento
+    context_object_name = 'gym'
+    template_name = 'EntrenamientoApp/gymDetalle.html'
 
 # FUNCIONAL
 

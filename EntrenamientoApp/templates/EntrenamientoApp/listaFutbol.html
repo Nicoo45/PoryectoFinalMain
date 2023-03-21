@@ -22,7 +22,7 @@
                 <div class="card-body">
                 <img src="{{bajo.imagenInstrumento.url}}" class="" width="100px">
                 {{FUTBOL.titulo}}
-                <a href="{% url 'bajo' bajo.id %}"><i class="bi bi-eye"></i></a>
+                <a href="{% url 'futbol' futbol.id %}"><i class="bi bi-eye"></i></a>
                 {% if user.id == FUTBOL.usuario.id %}
                 <a href="{% url 'futbol_editar' futbol.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'futbol_eliminar' futbol.id %}"><i class="bi bi-trash text-danger"></i></a>

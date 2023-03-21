@@ -22,7 +22,7 @@
                 <div class="card-body">
                 <img src="{{bajo.imagenInstrumento.url}}" class="" width="100px">
                 {{FUNCIONAL.titulo}}
-                <a href="{% url 'bajo' bajo.id %}"><i class="bi bi-eye"></i></a>
+                <a href="{% url 'funcional' funcional.id %}"><i class="bi bi-eye"></i></a>
                 {% if user.id == FUNCIONAL.usuario.id %}
                 <a href="{% url 'funcional_editar' funcional.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'funcional_eliminar' funcional.id %}"><i class="bi bi-trash text-danger"></i></a>

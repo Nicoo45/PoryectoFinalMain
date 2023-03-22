@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from .models import Equipamiento
-from .forms import FormularioCambioPassword, FormularioEdicion, FormularioRegistroUsuario
+from .models import Equipamiento, Comentario
+from .forms import FormularioCambioPassword, FormularioEdicion, FormularioRegistroUsuario, FormularioNuevoEquipamiento, FormularioComentario
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -62,7 +62,7 @@ class GymLista(LoginRequiredMixin, ListView):
     context_object_name = 'gyms'
     queryset = Equipamiento.objects.filter(equipamiento__startswith='gym')
     template_name = 'EntrenamientoApp/listaGym.html'
-    #login_url = '/login/'
+    login_url = '/login/'
 
 class GymDetalle(DetailView):
     model = Equipamiento
@@ -103,3 +103,32 @@ class OtroLista(ListView):
     context_object_name = 'otros'
     queryset = Equipamiento.objects.filter(equipamiento__startswith='otro')
     template_name = 'EntrenamientoApp/listaOtros.html'
+
+# CREACION INSTRUMENTO
+
+class EquipamientoCreacion(LoginRequiredMixin, CreateView):
+    model = Equipamiento
+    form_class = FormularioNuevoEquipamiento
+    success_url = reverse_lazy('home')
+    template_name = 'EntrenamientoApp/equipamientoCreacion.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(EquipamientoCreacion, self).form_valid(form)
+
+# COMENTARIOS
+
+class ComentarioPagina(LoginRequiredMixin, CreateView):
+    model = Comentario
+    form_class = FormularioComentario
+    template_name = 'EntrenamientoApp/comentario.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.comentario_id = self.kwargs['pk']
+        return super(ComentarioPagina, self).form_valid(form)
+
+# ACERCA DE MI
+
+def about(request):
+    return render(request, 'EntrenamientoApp/acercaDeMi.html', {})

@@ -1,4 +1,4 @@
-{% extends 'EntrenamientoApp/home.html' %}
+{% extends 'EntrenamientoApp/about.html' %}
 
 {% block content %}
 
@@ -10,12 +10,12 @@
 <p><h4>{{gym.titulo}}</h4></p>
 
 {% if gym.imagenEquipamiento %}
-    <p><img src="{{guitarra.imagenInstrumento.url}}" alt=""></p>
+    <p><img src="{{gym.imagenEquipamiento.url}}" alt=""></p>
 {% endif %}
 <p>Marca: {{gym.marca}}</p>
 <p>Descripción: {{gym.descripcion}}</p>
 <p>Año: {{gym.year}}</p>
-<p>Precio(US$): {{gym.precio}}</p>
+<p>Precio($): {{gym.precio}}</p>
 <p>Estado: {{gym.estado}}</p>
 <p>Teléfono de Contacto: {{gym.telefonoContacto}}</p>
 <p>Email de Contacto: {{gym.emailContacto}}</p>

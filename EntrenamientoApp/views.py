@@ -3,13 +3,17 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from .models import Equipamiento, Comentario
-from .forms import FormularioCambioPassword, FormularioEdicion, FormularioRegistroUsuario, FormularioNuevoEquipamiento, FormularioComentario
+from .forms import FormularioCambioPassword, FormularioEdicion, FormularioRegistroUsuario, FormularioNuevoEquipamiento, FormularioComentario, ActualizacionEquipamiento
+from django.http import HttpResponse
+#from django.conf import settings
 
+#User = settings.AUTH_USER_MODEL
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'EntrenamientoApp/home.html'
@@ -64,10 +68,23 @@ class GymLista(LoginRequiredMixin, ListView):
     template_name = 'EntrenamientoApp/listaGym.html'
     login_url = '/login/'
 
-class GymDetalle(DetailView):
+class GymDetalle(LoginRequiredMixin, DetailView):
     model = Equipamiento
     context_object_name = 'gym'
     template_name = 'EntrenamientoApp/gymDetalle.html'
+
+class GymUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('gyms')
+    context_object_name = 'gym'
+    template_name = 'EntrenamientoApp/gymEdicion.html'
+
+class GymDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('gyms')
+    context_object_name = 'gym'
+    template_name = 'Entrenamiento/gymBorrado.html'
 
 # FUNCIONAL
 
@@ -76,12 +93,48 @@ class FuncionalLista(ListView):
     queryset = Equipamiento.objects.filter(equipamiento__startswith='funcional')
     template_name = 'EntrenamientoApp/listaFuncional.html'
 
+class FuncionalDetalle(LoginRequiredMixin,DetailView):
+    model = Equipamiento
+    context_object_name = 'funcional'
+    template_name = 'EntrenamientoApp/funcionalDetalle.html'
+
+class FuncionalUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('funcionals')
+    context_object_name = 'funcional'
+    template_name = 'EntrenamientoApp/funcionalEdicion.html'
+
+class FuncionalDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('funcionals')
+    context_object_name = 'funcional'
+    template_name = 'EntrenamientoApp/funcionalBorrado.html'
+
 # FUTBOL
 
 class FutbolLista(ListView):
     context_object_name = 'futbols'
     queryset = Equipamiento.objects.filter(equipamiento__startswith='futbol')
     template_name = 'EntrenamientoApp/listaFutbol.html'
+
+class FutbolDetalle(LoginRequiredMixin,DetailView):
+    model = Equipamiento
+    context_object_name = 'futbol'
+    template_name = 'EntrenamientoApp/futbolDetalle.html'
+
+class FutbolUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('futbols')
+    context_object_name = 'futbol'
+    template_name = 'EntrenamientoApp/futbolEdicion.html'
+
+class FutbolDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('futbols')
+    context_object_name = 'futbol'
+    template_name = 'EntrenamientoApp/futbolBorrado.html'
 
 # BOXEO
 
@@ -90,6 +143,24 @@ class BoxeoLista(ListView):
     queryset = Equipamiento.objects.filter(equipamiento__startswith='boxeo')
     template_name = 'EntrenamientoApp/listaBoxeo.html'
 
+class BoxeoDetalle(LoginRequiredMixin,DetailView):
+    model = Equipamiento
+    context_object_name = 'boxeo'
+    template_name = 'EntrenamientoApp/boxeoDetalle.html'
+
+class BoxeoUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('boxeos')
+    context_object_name = 'boxeo'
+    template_name = 'EntrenamientoApp/boxeoEdicion.html'
+
+class BoxeoDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('boxeos')
+    context_object_name = 'boxeo'
+    template_name = 'EntrenamientoApp/boxeoBorrado.html'
+
 # BASQUET
 
 class BasquetLista(ListView):
@@ -97,12 +168,48 @@ class BasquetLista(ListView):
     queryset = Equipamiento.objects.filter(equipamiento__startswith='basquet')
     template_name = 'EntrenamientoApp/listaBasquet.html'
 
+class BasquetDetalle(LoginRequiredMixin,DetailView):
+    model = Equipamiento
+    context_object_name = 'basquet'
+    template_name = 'EntrenamientoApp/basquetDetalle.html'
+
+class BasquetUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('basquets')
+    context_object_name = 'basquet'
+    template_name = 'EntrenamientoApp/basquetEdicion.html'
+
+class BasquetDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('basquets')
+    context_object_name = 'basquet'
+    template_name = 'EntrenamientoApp/basquetBorrado.html'
+
 # OTRO
 
 class OtroLista(ListView):
     context_object_name = 'otros'
     queryset = Equipamiento.objects.filter(equipamiento__startswith='otro')
     template_name = 'EntrenamientoApp/listaOtros.html'
+
+class OtroDetalle(LoginRequiredMixin,DetailView):
+    model = Equipamiento
+    context_object_name = 'otro'
+    template_name = 'EntrenamientoApp/otroDetalle.html'
+
+class OtroUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipamiento
+    form_class = ActualizacionEquipamiento
+    success_url = reverse_lazy('otros')
+    context_object_name = 'otro'
+    template_name = 'EntrenamientoApp/otroEdicion.html'
+
+class OtroDelete(LoginRequiredMixin, DeleteView):
+    model = Equipamiento
+    success_url = reverse_lazy('otros')
+    context_object_name = 'otro'
+    template_name = 'EntrenamientoApp/otroBorrado.html'
 
 # CREACION INSTRUMENTO
 
@@ -131,4 +238,35 @@ class ComentarioPagina(LoginRequiredMixin, CreateView):
 # ACERCA DE MI
 
 def about(request):
-    return render(request, 'EntrenamientoApp/acercaDeMi.html', {})
+    return render(request, 'EntrenamientoApp/about.html', {})
+
+def busquedaCursos(request):
+
+    return render(request, "AppCoder/busquedaCursos.html")
+
+def buscar(request):
+
+    if request.GET["gym"]:    
+        publicacion=request.GET["gym"] 
+        equipamientos =Equipamiento.objects.filter(equipamiento__icontains=publicacion)
+
+        return render(request, "EntrenamientoApp/resultadosBusqueda.html", {"equipamientos": equipamientos, "query":publicacion})
+
+    else:
+
+        mensaje= "No has introducido nada"
+
+    return HttpResponse(mensaje)
+
+#@login_required
+#def inicio(request):
+    
+#    avatares= Avatar.objects.filter(user=request.user.id)
+
+#    return render(request, 'EntrenamientoApp/home.html', {"url":avatares[0].imagen.url})
+
+def tiendas(request):
+    return render(request, 'EntrenamientoApp/tiendas.html')
+
+def carrusel(request):
+    return render(request, 'EntrenamientoApp/carrusel.html')

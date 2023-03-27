@@ -1,5 +1,5 @@
-{% extends 'EntrenamientoApp/home.html' %}
-
+{% extends 'EntrenamientoApp/about.html' %}
+{% load static %}
 {% block content %}
 
 
@@ -20,8 +20,8 @@
             <div class="col-sm-6 align-items-center">
                 <div class="card-body">
                 <img src="{{gym.imagenEquipamiento.url}}" class="" width="100px">
-                {{GYM.titulo}}
-                <a href="{% url 'listaGym/' gym.id %}"><i class="bi bi-eye"></i></a>
+                {{gym.titulo}}
+                <a href="{% url 'gym' gym.id %}"><i class="bi bi-eye"></i></a>
                 {% if user.id == gym.usuario.id %}
                 <a href="{% url 'gym_editar' gym.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'gym_eliminar' gym.id %}"><i class="bi bi-trash text-danger"></i></a>

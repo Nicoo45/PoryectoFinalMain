@@ -42,7 +42,7 @@ class FormularioCambioPassword(PasswordChangeForm):
 class FormularioNuevoEquipamiento(forms.ModelForm):
     class Meta:
         model = Equipamiento
-        fields = ('usuario', 'titulo', 'equipamiento', 'marca', 'descripcion', 'year', 'precio', 'estado', 'telefonoContacto', 'emailContacto', 'imagenEquipamiento')
+        fields = ('usuario', 'titulo', 'equipamiento', 'marca', 'descripcion', 'year', 'precio', 'usado', 'telefonoContacto', 'emailContacto', 'imagenEquipamiento')
 
         widgets = {
             'usuario': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'usuario_id', 'type':'hidden'}),
@@ -52,7 +52,7 @@ class FormularioNuevoEquipamiento(forms.ModelForm):
             'descripcion' : forms.Textarea(attrs={'class': 'form-control'}),
             'year' : forms.TextInput(attrs={'class': 'form-control'}),
             'precio' : forms.TextInput(attrs={'class': 'form-control'}),
-            'estado' : forms.NullBooleanSelect(attrs={'class': 'form-control'}),
+            'usado' : forms.NullBooleanSelect(attrs={'class': 'form-control'}),
             'telefonoContacto' : forms.TextInput(attrs={'class': 'form-control'}),
             'emailContacto' : forms.TextInput(attrs={'class': 'form-control'}),
         }
@@ -60,7 +60,7 @@ class FormularioNuevoEquipamiento(forms.ModelForm):
 class ActualizacionEquipamiento(forms.ModelForm):
     class Meta:
         model = Equipamiento
-        fields = ('titulo', 'equipamiento', 'marca', 'descripcion', 'year', 'precio', 'estado', 'telefonoContacto', 'emailContacto', 'imagenEquipamiento')
+        fields = ('titulo', 'equipamiento', 'marca', 'descripcion', 'year', 'precio', 'usado', 'telefonoContacto', 'emailContacto', 'imagenEquipamiento')
 
         widgets = {
             'titulo' : forms.TextInput(attrs={'class': 'form-control'}),
@@ -69,7 +69,7 @@ class ActualizacionEquipamiento(forms.ModelForm):
             'descripcion' : forms.Textarea(attrs={'class': 'form-control'}),
             'year' : forms.TextInput(attrs={'class': 'form-control'}),
             'precio' : forms.TextInput(attrs={'class': 'form-control'}),
-            'estado' : forms.NullBooleanSelect(attrs={'class': 'form-control'}),
+            'usado' : forms.NullBooleanSelect(attrs={'class': 'form-control'}),
             'telefonoContacto' : forms.TextInput(attrs={'class': 'form-control'}),
             'emailContacto' : forms.TextInput(attrs={'class': 'form-control'}),
         }

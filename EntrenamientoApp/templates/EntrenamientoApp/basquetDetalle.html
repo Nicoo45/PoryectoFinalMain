@@ -1,0 +1,42 @@
+{% extends 'EntrenamientoApp/about.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{basquet.titulo}}</h4></p>
+{% if basquet.imagenEquipamiento %}
+    <p><img src="{{basquet.imagenEquipamiento.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{basquet.marca}}</p>
+<p>Descripción: {{basquet.descripcion}}</p>
+<p>Año: {{basquet.year}}</p>
+<p>Precio($): {{basquet.precio}}</p>
+<p>Estado: {{basquet.estado}}</p>
+<p>Teléfono de Contacto: {{basquet.telefonoContacto}}</p>
+<p>Email de Contacto: {{basquet.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not basquet.comentarios.all %}
+        No han comentado este instrumento
+    {% else %}
+        {% for comentario in basquet.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' funcional.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+
+{% endblock %}

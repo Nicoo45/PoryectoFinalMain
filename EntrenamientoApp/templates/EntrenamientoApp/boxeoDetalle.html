@@ -1,0 +1,42 @@
+{% extends 'EntrenamientoApp/about.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{boxeo.titulo}}</h4></p>
+{% if boxeo.imagenEquipamiento %}
+    <p><img src="{{boxeo.imagenEquipamiento.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{boxeo.marca}}</p>
+<p>Descripción: {{boxeo.descripcion}}</p>
+<p>Año: {{boxeo.year}}</p>
+<p>Precio($): {{boxeo.precio}}</p>
+<p>Estado: {{boxeo.estado}}</p>
+<p>Teléfono de Contacto: {{boxeo.telefonoContacto}}</p>
+<p>Email de Contacto: {{boxeo.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not boxeo.comentarios.all %}
+        No han comentado este instrumento
+    {% else %}
+        {% for comentario in boxeo.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' funcional.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+
+{% endblock %}

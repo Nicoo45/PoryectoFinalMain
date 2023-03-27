@@ -1,4 +1,4 @@
-{% extends 'EntrenamientoApp/home.html' %}
+{% extends 'EntrenamientoApp/about.html' %}
 
 {% block content %}
 
@@ -17,13 +17,13 @@
 
 <div class="container text-center">
     <div class="row">
-            {% for equipo in funcionals %}
+            {% for funcional in funcionals %}
             <div class="col-sm-6 align-items-center">
                 <div class="card-body">
-                <img src="{{bajo.imagenInstrumento.url}}" class="" width="100px">
-                {{FUNCIONAL.titulo}}
+                <img src="{{funcional.imagenEquipamiento.url}}" class="" width="100px">
+                {{funcional.titulo}}
                 <a href="{% url 'funcional' funcional.id %}"><i class="bi bi-eye"></i></a>
-                {% if user.id == FUNCIONAL.usuario.id %}
+                {% if user.id == funcional.usuario.id %}
                 <a href="{% url 'funcional_editar' funcional.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'funcional_eliminar' funcional.id %}"><i class="bi bi-trash text-danger"></i></a>
                 <br>

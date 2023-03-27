@@ -13,7 +13,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'EntrenamientoApp/css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static 'EntrenamientoApp/css/carrusel.css' %}" rel="stylesheet" />
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -26,8 +25,23 @@
                             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="#features">Tiendas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#buscar">Búsqueda</a>
-                            <li class="nav-item"><a class="nav-link" href="#carouselExampleControls">Categorías</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Equipamiento</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="{% url 'nuevo' %}">Agregar Equipamiento</a></li>
+                                    <li><a class="dropdown-item" href="#buscar">Buscar Equipamiento</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'gyms' %}">GYM</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'funcionals' %}">FUNCIONAL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'futbols' %}">FUTBOL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'boxeos' %}">BOXEO</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'basquets' %}">BASQUET</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         <div class="container"></div>
                         <div class="container"></div>
@@ -36,7 +50,6 @@
                         <div class="container"></div>
                         {% if request.user.is_authenticated %}
                         <div class="container">
-                            <img src="{{avatar.imagen.url}}"/>
                         <li class="nav-item">
                           <span class="text-light"> Hola <strong>{{request.user.first_name}}</strong>!</span>
                         </li>
@@ -66,121 +79,27 @@
                     </div>
                 </div>
             </nav>
-            {% block content %}
             <!-- Inicio -->
-            <div class="text-center">
-                <img height="40px" src="{{url}}">
-                <h3>Que bueno verte {{user.username}}</h3>
-            </div>
-            <!-- Header-->
-            <header class="bg-dark py-5">
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center justify-content-center">
-                        <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">Web de Compra/Venta de Equipamientos para Entrenamiento</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">Aquí podras podras encontrar publicaciones de compra/venta de equipamientos deportivos para todo tipo de entrenamiento. También podras realizar tus propias publicaciones !</p>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'nuevo' %}">Agregar Publicación</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{% static 'imagenes/fondo2.jpg' %}" alt="..." /></div>
-                    </div>
-                </div>
-            </header>
-            <!--Buscar Equipamiento-->
-            <div class="py-5 bg-light" id="buscar">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-10 col-xl-7">
-                            <div class="text-center">
-                                <div class="fs-4 mb-4 fst-italic">Aquí podras buscar las las publicaciones de los equipamientos que esten registrados !</div>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <form action="/buscar/" method="GET">
+            <p>Estás buscando: <strong>{{publicacion}}</strong></p>
 
-                                        <input type="text" name="Equipamiento">
-                                        <input type="submit" value="Buscar">
-                                        
-                                    </form>                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <!--Carrusel Listas-->            
-    <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="card">
-                <img src="{% static 'imagenes/gym 1.jpg' %}" class="d-block w-100" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">GYM</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="{% url 'gyms' %}" class="btn btn-primary">Equipamientos</a>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card">
-                <img src="{% static 'imagenes/funcional1.jpg' %}" class="d-block w-100" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">FUNCIONAL</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="{% url 'funcionals' %}" class="btn btn-primary">Equipamientos</a>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card">
-                <img src="{% static 'imagenes/futbol1.jpg' %}" class="d-block w-100" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">FUTBOL</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="{% url 'futbols' %}" class="btn btn-primary">Equipamientos</a>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card">
-                <img src="{% static 'imagenes/boxeo1.jpg' %}" class="d-block w-100" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">BOXEO</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="{% url 'boxeos' %}" class="btn btn-primary">Equipamientos</a>
-                </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="card">
-                <img src="{% static 'imagenes/basquet1.jpg' %}" class="d-block w-100" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">BASQUET</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="{% url 'basquets' %}" class="btn btn-primary">Equipamientos</a>
-                </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="{% static 'EntrenamientoApp/js/scripts.js' %}"></script>
+            {% if equipamiento %}
+            
+                <p>Publicaciones encontrados: {{equipamiento|length}} equipamientos</p>
+            
+                <ul>
+            
+                    {% for eqp in equipamiento %}
+                        <li>
+                            {{equipamiento.nombre}} &nbsp; {{equipamiento.titulo}}
+                                
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+            
+                <p>No existe la publicacion que estas buscando</p>
+            
+            {% endif %}
             <!-- Sección Tiendas-->
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
@@ -209,7 +128,7 @@
                             <div class="card h-100 shadow border-0 d-flex align-items-center">
                                 <img class="card-img-top" src="data:image/png;base64,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" alt="..." />
                                 <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
                                     <a class="text-decoration-none link-dark stretched-link" href="https://www.strongfitness.com.ar/productos/"><h5 class="card-title mb-3">Tienda Strong</h5></a>
                                     <p class="card-text mb-0">Tienda oficial de Strong</p>
                                 </div>
@@ -237,4 +156,3 @@
             <script src="{% static 'EntrenamientoApp/js/scripts.js' %}"></script>
     </body>
 </html>
-{% endblock %}

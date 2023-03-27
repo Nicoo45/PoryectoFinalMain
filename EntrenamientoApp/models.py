@@ -1,5 +1,9 @@
 from django.db import models
+import os
+from django.conf import settings
 from django.contrib.auth.models import User
+#from PIL import Image
+#from django.db.models.signals import post_save
 
 class Equipamiento(models.Model):
     equipamientoSeleccion = (
@@ -17,7 +21,7 @@ class Equipamiento(models.Model):
     descripcion = models.TextField(null=True, blank=True)
     year = models.IntegerField() 
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    estado = models.BooleanField()
+    usado = models.BooleanField()
     fechaPublicacion = models.DateTimeField(auto_now_add=True)
     telefonoContacto = models.IntegerField()
     emailContacto = models.EmailField()

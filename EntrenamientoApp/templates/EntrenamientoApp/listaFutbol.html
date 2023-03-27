@@ -1,4 +1,4 @@
-{% extends 'EntrenamientoApp/home.html' %}
+{% extends 'EntrenamientoApp/about.html' %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
             {% for equipo in futbols %}
             <div class="col-sm-6 align-items-center">
                 <div class="card-body">
-                <img src="{{bajo.imagenInstrumento.url}}" class="" width="100px">
+                <img src="{{futbol.imagenInstrumento.url}}" class="" width="100px">
                 {{FUTBOL.titulo}}
                 <a href="{% url 'futbol' futbol.id %}"><i class="bi bi-eye"></i></a>
                 {% if user.id == FUTBOL.usuario.id %}

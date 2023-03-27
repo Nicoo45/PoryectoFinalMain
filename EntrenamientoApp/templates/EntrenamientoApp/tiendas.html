@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Web de Compra/Venta de Equipamientos para Entrenamiento</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'EntrenamientoApp/assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'EntrenamientoApp/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#features">Tiendas</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Equipamiento</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'nuevo' %}">Agregar Equipamiento</a></li>
+                                    <li><a class="dropdown-item" href="#buscar">Buscar Equipamiento</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'gyms' %}">GYM</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'funcionals' %}">FUNCIONAL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'futbols' %}">FUTBOL</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'boxeos' %}">BOXEO</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'basquets' %}">BASQUET</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        {% if request.user.is_authenticated %}
+                        <div class="container">
+                            <img src="{{avatar.imagen.url}}"/>
+                        <li class="nav-item">
+                          <span class="text-light"> Hola <strong>{{request.user.first_name}}</strong>!</span>
+                        </li>
+                        </div>
+                        <div class="container">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'editar_perfil' %}"><span class="text-primary">Perfil</span></a>
+                        </li>
+                        </div>
+                        <div class="container">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'logout' %}"><span class="text-primary">Logout</span></a>
+                        </li>
+                        </div>
+                        {% else %}
+                        <div class="container">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'login' %}"><span class="text-primary">Login</span></a>
+                        </li>
+                        </div>
+                        <div class="container">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'registro' %}"><span class="text-primary">Registrate</span></a>
+                        </li> 
+                        </div>         
+                      {% endif %}
+                    </div>
+                </div>
+            </nav>
+{% block content %}
+<section class="py-5" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Tiendas Populares</h2>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0 border-0 d-flex align-items-center">
+                    <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/019/136/308/non_2x/adidas-logo-adidas-icon-free-free-vector.jpg" alt="logo adidas"/>
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="https://www.adidas.com.ar/?=null&=null&-_-ds_agid=58700004850253847&-_-ds_kid=43700041731365975-_-&af_channel=Search&af_reengagement_window=30d&c=Trademark-adidas-General-B-Exact&cm_mmc=AdieSEM_Google-_-Trademark-adidas-General-B-Exact-_-Trademark-adidas-X-General-_-adidas-_--_-dv%3AeCom-_-cm_mmca1%3DAR-_-cm_mmc2%3D&gclid=CjwKCAjwzuqgBhAcEiwAdj5dRqLz-XjdE_EZ8CoJ9TIQyJJfwyg-nGRS_xVkdOKHKy8Fve-N-FQ7dxoCLFoQAvD_BwE&gclsrc=aw.ds&is_retargeting=true&pid=googleadwords_temp"><h5 class="card-title mb-3">Tienda Adidas</h5></a>
+                        <p class="card-text mb-0">Tienda oficial de Adidas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0 d-flex align-items-center">
+                    <img class="card-img-top" src="data:image/png;base64,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" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="https://www.strongfitness.com.ar/productos/"><h5 class="card-title mb-3">Tienda Strong</h5></a>
+                        <p class="card-text mb-0">Tienda oficial de Strong</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0 d-flex align-items-center">
+                    <img class="card-img-top" src="https://http2.mlstatic.com/D_NQ_NP_888939-MLA51249949869_082022-O.jpg" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="https://www.everlastlatam.com/catalogo"><h5 class="card-title mb-3">Tienda Everlast</h5></a>
+                        <p class="card-text mb-0">Tienda oficial de Everlast</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

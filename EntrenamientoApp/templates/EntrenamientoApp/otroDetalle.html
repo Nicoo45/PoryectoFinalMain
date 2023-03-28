@@ -1,0 +1,43 @@
+{% extends 'EntrenamientoApp/about.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{otro.titulo}}</h4></p>
+
+{% if otro.imagenEquipamiento %}
+    <p><img src="{{otro.imagenEquipamiento.url}}" width="400" height="400" alt=""></p>
+{% endif %}
+<p>Marca: {{otro.marca}}</p>
+<p>Descripción: {{otro.descripcion}}</p>
+<p>Año: {{otro.year}}</p>
+<p>Precio($): {{otro.precio}}</p>
+<p>Estado: {{gym.estado}}</p>
+<p>Teléfono de Contacto: {{otro.telefonoContacto}}</p>
+<p>Email de Contacto: {{otro.emailContacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+    {% if not otro.comentarios.all %}
+        No han comentado este instrumento
+    {% else %}
+        {% for comentario in otro.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' otro.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+{% endblock %}

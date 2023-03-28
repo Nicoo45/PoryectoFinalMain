@@ -56,7 +56,7 @@ path('otroDetalle/<int:pk>/comentario/', ComentarioPagina.as_view(), name='comen
 path('tiendas/', views.tiendas, name='tiendas'),
 path('about/', views.about, name='about'),
 path('buscar/', views.buscar),
-path('carrusel/', views.carrusel, name='carrusel' )
+path('resultadosBusqueda', views.resultadosBusqueda, name='resultadosBusqueda')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # y ahí le especifico a Django el directorio que voy a utilizar para subir

@@ -17,13 +17,13 @@
 
 <div class="container text-center">
     <div class="row">
-            {% for equipo in futbols %}
+            {% for futbol in futbols %}
             <div class="col-sm-6 align-items-center">
                 <div class="card-body">
-                <img src="{{futbol.imagenInstrumento.url}}" class="" width="100px">
-                {{FUTBOL.titulo}}
+                <img src="{{futbol.imagenEquipamiento.url}}" class="" width="100px">
+                {{futbol.titulo}}
                 <a href="{% url 'futbol' futbol.id %}"><i class="bi bi-eye"></i></a>
-                {% if user.id == FUTBOL.usuario.id %}
+                {% if user.id == futbol.usuario.id %}
                 <a href="{% url 'futbol_editar' futbol.id %}"><i class="bi bi-pencil-fill"></i></a>
                 <a href="{% url 'futbol_eliminar' futbol.id %}"><i class="bi bi-trash text-danger"></i></a>
                 <br>

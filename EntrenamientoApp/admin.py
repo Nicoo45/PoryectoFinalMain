@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Equipamiento, Comentario, Profile
 
-# Register your models here.
+admin.site.register(Equipamiento)
+admin.site.register(Comentario)
+admin.site.register(Profile)

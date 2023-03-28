@@ -9,7 +9,7 @@
 
 <p><h4>{{basquet.titulo}}</h4></p>
 {% if basquet.imagenEquipamiento %}
-    <p><img src="{{basquet.imagenEquipamiento.url}}" alt=""></p>
+    <p><img src="{{basquet.imagenEquipamiento.url}}" width="400" height="400" alt=""></p>
 {% endif %}
 <p>Marca: {{basquet.marca}}</p>
 <p>Descripción: {{basquet.descripcion}}</p>
@@ -35,7 +35,7 @@
         <hr>
         {% endfor %}
     {% endif %}
-    <a href="{% url 'comentario' funcional.pk %}">Agrega un Comentario</a>
+    <a href="{% url 'comentario' basquet.pk %}">Agrega un Comentario</a>
     </div>
 </div>
 

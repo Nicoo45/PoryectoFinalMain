@@ -28,50 +28,65 @@
                             <li class="nav-item"><a class="nav-link" href="#features">Tiendas</a></li>
                             <li class="nav-item"><a class="nav-link" href="#buscar">Búsqueda</a>
                             <li class="nav-item"><a class="nav-link" href="#carouselExampleControls">Categorías</a>
-                        </ul>
+                        </ul>                        <div class="container"></div>
                         <div class="container"></div>
                         <div class="container"></div>
                         <div class="container"></div>
                         <div class="container"></div>
                         <div class="container"></div>
-                        {% if request.user.is_authenticated %}
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                        <div class="container"></div>
+                    {% if request.user.is_authenticated %}
+                        {% if user.profile.profile_pic %}
                         <div class="container">
-                            <img src="{{avatar.imagen.url}}"/>
-                        <li class="nav-item">
-                          <span class="text-light"> Hola <strong>{{request.user.first_name}}</strong>!</span>
-                        </li>
-                        </div>
-                        <div class="container">
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'editar_perfil' %}"><span class="text-primary">Perfil</span></a>
-                        </li>
-                        </div>
-                        <div class="container">
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'logout' %}"><span class="text-primary">Logout</span></a>
-                        </li>
-                        </div>
+                            <img src="{{ user.profile.profile_pic.url }}" width="50" height="50" class="rounded-circle"/>
                         {% else %}
-                        <div class="container">
+                            <img src="{% static 'avatares/default_user_perfil.png' %}" width="50" height="50" class="rounded-circle ml-auto" alt="...">
+                        {% endif %}
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'login' %}"><span class="text-primary">Login</span></a>
+                          <span class="text-light">Hola <strong>{{request.user.first_name}}</strong>!</span>
                         </li>
                         </div>
                         <div class="container">
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'registro' %}"><span class="text-primary">Registrate</span></a>
-                        </li> 
-                        </div>         
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <li class="nav-item">
+                                <a class="nav-link" href="{% url 'editar_perfil' %}"><button class="btn btn-primary me-md-2" type="button">Perfil</button></a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}"><button class="btn btn-primary" type="button">Logout</button></a>
+                                </li>
+                            </div>
+                        </div>
+                    {% else %}
+                    <div class="container">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-primary me-md-2" type="button">Login</button></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-primary" type="button">Registrate</button></a>
+                            </li>
+                        </div>
+                    </div>       
                       {% endif %}
                     </div>
                 </div>
             </nav>
             {% block content %}
             <!-- Inicio -->
-            <div class="text-center">
-                <img height="40px" src="{{url}}">
-                <h3>Que bueno verte {{user.username}}</h3>
-            </div>
             <!-- Header-->
             <header class="bg-dark py-5">
                 <div class="container px-5">
@@ -97,12 +112,9 @@
                             <div class="text-center">
                                 <div class="fs-4 mb-4 fst-italic">Aquí podras buscar las las publicaciones de los equipamientos que esten registrados !</div>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <form action="/buscar/" method="GET">
-
-                                        <input type="text" name="Equipamiento">
-                                        <input type="submit" value="Buscar">
-                                        
-                                    </form>                                
+                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'resultadosBusqueda' %}">Buscar</a>
+                                    </div>                                
                                 </div>
                             </div>
                         </div>

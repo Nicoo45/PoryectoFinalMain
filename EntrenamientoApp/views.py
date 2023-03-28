@@ -240,9 +240,8 @@ class ComentarioPagina(LoginRequiredMixin, CreateView):
 def about(request):
     return render(request, 'EntrenamientoApp/about.html', {})
 
-def busquedaCursos(request):
-
-    return render(request, "AppCoder/busquedaCursos.html")
+def resultadosBusqueda(request):
+    return render(request, "EntrenamientoApp/resultadosBusqueda.html")
 
 def buscar(request):
 
@@ -257,13 +256,6 @@ def buscar(request):
         mensaje= "No has introducido nada"
 
     return HttpResponse(mensaje)
-
-#@login_required
-#def inicio(request):
-    
-#    avatares= Avatar.objects.filter(user=request.user.id)
-
-#    return render(request, 'EntrenamientoApp/home.html', {"url":avatares[0].imagen.url})
 
 def tiendas(request):
     return render(request, 'EntrenamientoApp/tiendas.html')
